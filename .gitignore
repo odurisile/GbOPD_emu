@@ -1,0 +1,10 @@
+build/
+cmake-build-*/
+.vscode/
+.idea/
+*.gba
+*.sav
+*.elf
+*.o
+*.obj
+*.exe
