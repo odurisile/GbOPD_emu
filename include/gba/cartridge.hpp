@@ -24,13 +24,15 @@ struct cartridge_header_struct {
     uint8_t multiboot_flags[2]; // 0xBF - Multiboot details
     /* data */
 };
-extern cartridge_header_struct gba_cartridge_header;
+extern cartridge_header_struct* gba_cartridge_header;
+
+
+namespace gba {
 
 bool cart_open_file();
 void cart_print_info();
 bool cart_load(const char* filename);
-
-namespace gba {
+bool get_runtime_path();
 
 class Cartridge {
 public:

@@ -1,22 +1,27 @@
 #include <iostream>
 
 #include "gba/emulator.hpp"
-
+#include "gba/cartridge.hpp"
+#include "gba/memory.hpp"
+#include "gba/cpu.hpp"
+#include "gba/ppu.hpp"
+#include "gba/timers.hpp"
+#include <filesystem>
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        std::cerr << "Usage: gba <rom.gba>\n";
+    // Path to the GBA ROM we want to test.
+    const char* rom_path = "rom/PE.gba";
+
+    // Load the ROM into cartridge memory.
+    if (gba::cart_load(rom_path))
+    {
+        // Print information from the GBA cartridge header.
+        gba::cart_print_info();
+    }
+    else
+    {
+        std::cerr << "Failed to load ROM\n";
         return 1;
     }
-
-    gba::Emulator emulator;
-
-    if (!emulator.loadRom(argv[1])) {
-        std::cerr << "Failed to load ROM: " << argv[1] << '\n';
-        return 1;
-    }
-
-    emulator.reset();
-    emulator.run();
 
     return 0;
 }
