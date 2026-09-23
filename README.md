@@ -30,6 +30,18 @@ On Windows with Visual Studio generators, the executable may be under:
 build/Debug/gba.exe
 ```
 
+For example, from the project folder in PowerShell:
+
+```powershell
+.\build\Debug\gba.exe .\rom\PE.gba
+```
+
+The executable loads the supplied ROM, resets the CPU, and executes 20
+instructions using the current debug loop. It reports unsupported instructions
+and loading failures with a nonzero exit code. This is a CPU smoke run; graphics,
+BIOS services, and full game execution are not yet implemented. Use `--help` for
+usage, and quote ROM paths that contain spaces.
+
 ## Recommended implementation order
 
 1. ROM loading
